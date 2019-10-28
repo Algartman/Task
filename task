@@ -1,0 +1,41 @@
+public class Main
+{
+    public static int FindMaxElement(int[] arr){
+        if (arr!=null && arr.length!=0){
+           int length = arr.length; 
+           int max=0;
+           for (int i = 1; i < length; i++){
+               if (arr[i] > arr[max]) max = i; 
+           }
+           return max;
+        }
+        else return -1;
+    }
+    
+    public static void Test(int number){
+        int i;
+        int j;
+        int passed = 0;
+        int length;
+        int position;
+        for (i=0; i<number; i++){
+            length = (int)(Math.random() * 100);
+            int[] arr = new int[length];
+                if (length!=0){
+                    for (j=0; j<length; j++) arr[j] = Integer.MIN_VALUE + (int)(Math.random() * (Integer.MAX_VALUE - 1));
+                    position = (int)(Math.random()*(length-1));  
+                    arr[position] = Integer.MAX_VALUE;
+                }
+                else position = -1; 
+            if (position == FindMaxElement(arr)) passed++;
+        }
+        
+        if (number == passed) System.out.println("All test were passed");
+        else System.out.println("There are mistakes");
+    }
+
+
+	public static void main(String[] args) {
+	    Test(1000);
+	}
+}
